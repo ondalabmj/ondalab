@@ -37,8 +37,10 @@ export default function App() {
   const [learnFilter, setLearnFilter] = useState<string>('all');
   const [postIts, setPostIts] = useState<PostIt[]>(POST_ITS);
   const [newPostIt, setNewPostIt] = useState({ text: '', author: '', colorClass: 'bg-[#fff8c5] border-[#f0d870] text-[#4a3a00]' });
-  const [suggestion, setSuggestion] = useState({ title: '', content: '', email: '' });
+  const [suggestion, setSuggestion] = useState({ title: '', content: '', email: '', phone: '' });
   const [isSuggestSubmitted, setIsSuggestSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handlePageChange = (id: PageId) => {
     setActivePage(id);
@@ -66,15 +68,43 @@ export default function App() {
     setIsWriteModalOpen(false);
   };
 
-  const handleSuggestSubmit = (e: React.FormEvent) => {
+  const handleSuggestSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!suggestion.title || !suggestion.content) return;
-    setIsSuggestSubmitted(true);
-    setTimeout(() => {
-      setIsSuggestSubmitted(false);
-      setSuggestion({ title: '', content: '', email: '' });
-      handlePageChange('home');
-    }, 3000);
+    
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const response = await fetch('https://formspree.io/f/xqeyykrp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          organization: suggestion.title,
+          content: suggestion.content,
+          email: suggestion.email || 'N/A',
+          phone: suggestion.phone || 'N/A'
+        })
+      });
+
+      if (response.ok) {
+        setIsSuggestSubmitted(true);
+        setSuggestion({ title: '', content: '', email: '', phone: '' });
+        setTimeout(() => {
+          setIsSuggestSubmitted(false);
+          handlePageChange('home');
+        }, 5000);
+      } else {
+        throw new Error('전송에 실패했습니다. 다시 시도해주세요.');
+      }
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : '알 수 없는 오류가 발생했습니다.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -566,9 +596,9 @@ export default function App() {
               className="container mx-auto px-6 md:px-10 py-14 max-w-3xl"
             >
               <div className="mb-10 text-center">
-                <div className="text-[11px] font-bold tracking-[0.15em] uppercase text-coral mb-2">강의 제안</div>
-                <h2 className="text-3xl font-bold text-navy mb-4">듣고 싶은 강의가 있나요? 💡</h2>
-                <p className="text-navy/50 text-[15px]">온다랩에서 다뤄주었으면 하는 AI 툴이나 주제가 있다면 자유롭게 제안해주세요.</p>
+                <div className="text-[11px] font-bold tracking-[0.15em] uppercase text-coral mb-2">강의 요청</div>
+                <h2 className="text-3xl font-bold text-navy mb-4">온다랩의 AI 교육이 필요하신가요? 🏫</h2>
+                <p className="text-navy/50 text-[15px]">학교, 기업, 기관 등 온다랩의 전문적인 AI 교육 서비스가 필요한 곳이라면 어디든 신청해주세요.</p>
               </div>
 
               {isSuggestSubmitted ? (
@@ -580,8 +610,8 @@ export default function App() {
                   <div className="w-16 h-16 bg-teal-light text-teal rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
                     <CheckCircle2 size={32} />
                   </div>
-                  <h3 className="text-xl font-bold text-navy mb-2">제안이 접수되었습니다!</h3>
-                  <p className="text-navy/50 text-[14px] mb-8">소중한 의견 감사합니다. 검토 후 커리큘럼에 반영하도록 노력하겠습니다.</p>
+                  <h3 className="text-xl font-bold text-navy mb-2">요청이 접수되었습니다!</h3>
+                  <p className="text-navy/50 text-[14px] mb-8">소중한 문의 감사합니다. 확인 후 남겨주신 연락처로 빠르게 답변 드리겠습니다.</p>
                   <button onClick={() => handlePageChange('home')} className="btn-secondary">
                     홈으로 돌아가기
                   </button>
@@ -590,39 +620,77 @@ export default function App() {
                 <div className="bg-white rounded-[32px] border border-navy/10 shadow-xl p-8 md:p-10">
                   <form onSubmit={handleSuggestSubmit} className="space-y-6">
                     <div>
-                      <label className="block text-[13px] font-bold text-navy mb-2">제안 제목</label>
+                      <label className="block text-[13px] font-bold text-navy mb-2">기관/단체명</label>
                       <input 
                         type="text" 
+                        name="organization"
                         required
-                        placeholder="예: Suno AI를 활용한 배경음악 제작 강의 요청"
+                        placeholder="예: OO대학교, (주)온다컴퍼니 등"
                         className="w-full bg-bg border border-navy/10 rounded-xl px-4 py-3 text-[14px] focus:outline-none focus:border-coral transition-colors"
                         value={suggestion.title}
                         onChange={(e) => setSuggestion(prev => ({ ...prev, title: e.target.value }))}
                       />
                     </div>
                     <div>
-                      <label className="block text-[13px] font-bold text-navy mb-2">상세 내용</label>
+                      <label className="block text-[13px] font-bold text-navy mb-2">요청 내용 (대상, 인원, 주제 등)</label>
                       <textarea 
+                        name="content"
                         required
                         rows={6}
-                        placeholder="어떤 내용을 배우고 싶으신지 자세히 적어주세요."
+                        placeholder="교육 대상, 예상 인원, 희망하는 주제나 일정 등을 자유롭게 적어주세요."
                         className="w-full bg-bg border border-navy/10 rounded-xl px-4 py-3 text-[14px] focus:outline-none focus:border-coral transition-colors resize-none"
                         value={suggestion.content}
                         onChange={(e) => setSuggestion(prev => ({ ...prev, content: e.target.value }))}
                       />
                     </div>
-                    <div>
-                      <label className="block text-[13px] font-bold text-navy mb-2">답변 받을 이메일 (선택)</label>
-                      <input 
-                        type="email" 
-                        placeholder="example@email.com"
-                        className="w-full bg-bg border border-navy/10 rounded-xl px-4 py-3 text-[14px] focus:outline-none focus:border-coral transition-colors"
-                        value={suggestion.email}
-                        onChange={(e) => setSuggestion(prev => ({ ...prev, email: e.target.value }))}
-                      />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-[13px] font-bold text-navy mb-2">이메일 주소</label>
+                        <input 
+                          type="email" 
+                          name="email"
+                          required
+                          placeholder="example@email.com"
+                          className="w-full bg-bg border border-navy/10 rounded-xl px-4 py-3 text-[14px] focus:outline-none focus:border-coral transition-colors"
+                          value={suggestion.email}
+                          onChange={(e) => setSuggestion(prev => ({ ...prev, email: e.target.value }))}
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[13px] font-bold text-navy mb-2">전화번호</label>
+                        <input 
+                          type="tel" 
+                          name="phone"
+                          required
+                          placeholder="010-0000-0000"
+                          className="w-full bg-bg border border-navy/10 rounded-xl px-4 py-3 text-[14px] focus:outline-none focus:border-coral transition-colors"
+                          value={suggestion.phone}
+                          onChange={(e) => setSuggestion(prev => ({ ...prev, phone: e.target.value }))}
+                        />
+                      </div>
                     </div>
-                    <button type="submit" className="w-full btn-primary py-4 text-[15px] flex items-center justify-center gap-2">
-                      <Send size={18} /> 제안 제출하기
+
+                    {submitError && (
+                      <div className="flex items-center gap-2 text-coral text-[13px] bg-coral-light p-3 rounded-lg border border-coral-mid">
+                        <AlertCircle size={16} />
+                        {submitError}
+                      </div>
+                    )}
+
+                    <button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="w-full btn-primary py-4 text-[15px] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? (
+                        <span className="flex items-center gap-2">
+                          <Clock size={18} className="animate-spin" /> 전송 중...
+                        </span>
+                      ) : (
+                        <>
+                          <Send size={18} /> 강의 요청하기
+                        </>
+                      )}
                     </button>
                   </form>
                 </div>

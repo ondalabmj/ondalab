@@ -6,7 +6,7 @@ export const NAV_LINKS: NavLink[] = [
   { id: 'learn', label: '학습하기' },
   { id: 'project', label: '과제 관리' },
   { id: 'board', label: '자유 게시판' },
-  { id: 'suggest', label: '강의 제안' },
+  { id: 'suggest', label: '강의 요청' },
 ];
 
 export const STATS: StatItem[] = [
@@ -43,10 +43,10 @@ export const MENU_CARDS: MenuCard[] = [
   },
   {
     id: 'suggest',
-    icon: '💡',
-    title: '강의 제안',
-    desc: '듣고 싶은 강의가 있다면 자유롭게 제안해주세요',
-    tags: ['강의요청', '문의하기'],
+    icon: '🏫',
+    title: '강의 요청',
+    desc: '온다랩의 교육 서비스가 필요한 곳이라면 어디든 신청해주세요',
+    tags: ['기관요청', '특강문의'],
     color: 'amber',
   },
   {
