@@ -110,12 +110,12 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Navbar */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-bg/92 backdrop-blur-xl border-b border-navy/10 h-[60px] flex items-center px-6 md:px-10">
-        <button onClick={() => handlePageChange('home')} className="mr-10 flex-shrink-0">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-bg/92 backdrop-blur-xl border-b border-navy/10 h-[60px] flex items-center px-4 md:px-10">
+        <button onClick={() => handlePageChange('home')} className="mr-4 md:mr-10 flex-shrink-0">
           <img 
             src="https://drive.google.com/thumbnail?id=1qalAieoQ3_-7NWHKc7neDptz-SaGrf_A&sz=w1000" 
             alt="ONDALAB" 
-            className="h-12 w-auto object-contain" 
+            className="h-8 md:h-12 w-auto object-contain" 
             referrerPolicy="no-referrer" 
           />
         </button>
@@ -132,11 +132,11 @@ export default function App() {
             </button>
           ))}
         </nav>
-        <div className="flex gap-2 items-center ml-auto">
-          <button className="text-[13px] font-medium px-4 py-1.5 rounded-md border-1.5 border-navy/20 text-navy/70 hover:border-navy hover:text-navy transition-all">
+        <div className="flex gap-1.5 md:gap-2 items-center ml-auto">
+          <button className="text-[12px] md:text-[13px] font-medium px-2.5 md:px-4 py-1.5 rounded-md border-1.5 border-navy/20 text-navy/70 hover:border-navy hover:text-navy transition-all">
             로그인
           </button>
-          <button className="text-[13px] font-bold px-4 py-1.5 rounded-md bg-coral text-white hover:bg-[#d4612f] hover:-translate-y-0.5 transition-all">
+          <button className="text-[12px] md:text-[13px] font-bold px-2.5 md:px-4 py-1.5 rounded-md bg-coral text-white hover:bg-[#d4612f] hover:-translate-y-0.5 transition-all">
             시작하기
           </button>
         </div>
@@ -723,7 +723,7 @@ export default function App() {
               <img 
                 src="https://drive.google.com/thumbnail?id=1qalAieoQ3_-7NWHKc7neDptz-SaGrf_A&sz=w1000" 
                 alt="ONDALAB" 
-                className="h-12 w-auto object-contain" 
+                className="h-8 md:h-12 w-auto object-contain" 
                 referrerPolicy="no-referrer" 
               />
             </div>
