@@ -6,6 +6,7 @@ export const NAV_LINKS: NavLink[] = [
   { id: 'learn', label: '학습하기' },
   { id: 'project', label: '과제 관리' },
   { id: 'board', label: '자유 게시판' },
+  { id: 'suggest', label: '강의 제안' },
 ];
 
 export const STATS: StatItem[] = [
@@ -39,6 +40,14 @@ export const MENU_CARDS: MenuCard[] = [
     desc: '포스트잇 형태로 자유롭게 생각을 나눠보세요',
     tags: ['포스트잇', '자유작성'],
     color: 'teal',
+  },
+  {
+    id: 'suggest',
+    icon: '💡',
+    title: '강의 제안',
+    desc: '듣고 싶은 강의가 있다면 자유롭게 제안해주세요',
+    tags: ['강의요청', '문의하기'],
+    color: 'amber',
   },
   {
     id: 'about',

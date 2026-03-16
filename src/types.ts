@@ -1,6 +1,6 @@
 import { LucideIcon } from 'lucide-react';
 
-export type PageId = 'home' | 'about' | 'learn' | 'project' | 'board';
+export type PageId = 'home' | 'about' | 'learn' | 'project' | 'board' | 'suggest';
 
 export interface NavLink {
   id: PageId;

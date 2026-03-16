@@ -37,6 +37,8 @@ export default function App() {
   const [learnFilter, setLearnFilter] = useState<string>('all');
   const [postIts, setPostIts] = useState<PostIt[]>(POST_ITS);
   const [newPostIt, setNewPostIt] = useState({ text: '', author: '', colorClass: 'bg-[#fff8c5] border-[#f0d870] text-[#4a3a00]' });
+  const [suggestion, setSuggestion] = useState({ title: '', content: '', email: '' });
+  const [isSuggestSubmitted, setIsSuggestSubmitted] = useState(false);
 
   const handlePageChange = (id: PageId) => {
     setActivePage(id);
@@ -62,6 +64,17 @@ export default function App() {
     setPostIts(prev => [newItem, ...prev]);
     setNewPostIt({ text: '', author: '', colorClass: 'bg-[#fff8c5] border-[#f0d870] text-[#4a3a00]' });
     setIsWriteModalOpen(false);
+  };
+
+  const handleSuggestSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!suggestion.title || !suggestion.content) return;
+    setIsSuggestSubmitted(true);
+    setTimeout(() => {
+      setIsSuggestSubmitted(false);
+      setSuggestion({ title: '', content: '', email: '' });
+      handlePageChange('home');
+    }, 3000);
   };
 
   return (
@@ -541,6 +554,79 @@ export default function App() {
                   포스트잇 작성하기
                 </button>
               </div>
+            </motion.div>
+          )}
+
+          {activePage === 'suggest' && (
+            <motion.div
+              key="suggest"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="container mx-auto px-6 md:px-10 py-14 max-w-3xl"
+            >
+              <div className="mb-10 text-center">
+                <div className="text-[11px] font-bold tracking-[0.15em] uppercase text-coral mb-2">강의 제안</div>
+                <h2 className="text-3xl font-bold text-navy mb-4">듣고 싶은 강의가 있나요? 💡</h2>
+                <p className="text-navy/50 text-[15px]">온다랩에서 다뤄주었으면 하는 AI 툴이나 주제가 있다면 자유롭게 제안해주세요.</p>
+              </div>
+
+              {isSuggestSubmitted ? (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="bg-white rounded-[32px] border border-navy/10 p-12 text-center shadow-xl"
+                >
+                  <div className="w-16 h-16 bg-teal-light text-teal rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
+                    <CheckCircle2 size={32} />
+                  </div>
+                  <h3 className="text-xl font-bold text-navy mb-2">제안이 접수되었습니다!</h3>
+                  <p className="text-navy/50 text-[14px] mb-8">소중한 의견 감사합니다. 검토 후 커리큘럼에 반영하도록 노력하겠습니다.</p>
+                  <button onClick={() => handlePageChange('home')} className="btn-secondary">
+                    홈으로 돌아가기
+                  </button>
+                </motion.div>
+              ) : (
+                <div className="bg-white rounded-[32px] border border-navy/10 shadow-xl p-8 md:p-10">
+                  <form onSubmit={handleSuggestSubmit} className="space-y-6">
+                    <div>
+                      <label className="block text-[13px] font-bold text-navy mb-2">제안 제목</label>
+                      <input 
+                        type="text" 
+                        required
+                        placeholder="예: Suno AI를 활용한 배경음악 제작 강의 요청"
+                        className="w-full bg-bg border border-navy/10 rounded-xl px-4 py-3 text-[14px] focus:outline-none focus:border-coral transition-colors"
+                        value={suggestion.title}
+                        onChange={(e) => setSuggestion(prev => ({ ...prev, title: e.target.value }))}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[13px] font-bold text-navy mb-2">상세 내용</label>
+                      <textarea 
+                        required
+                        rows={6}
+                        placeholder="어떤 내용을 배우고 싶으신지 자세히 적어주세요."
+                        className="w-full bg-bg border border-navy/10 rounded-xl px-4 py-3 text-[14px] focus:outline-none focus:border-coral transition-colors resize-none"
+                        value={suggestion.content}
+                        onChange={(e) => setSuggestion(prev => ({ ...prev, content: e.target.value }))}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[13px] font-bold text-navy mb-2">답변 받을 이메일 (선택)</label>
+                      <input 
+                        type="email" 
+                        placeholder="example@email.com"
+                        className="w-full bg-bg border border-navy/10 rounded-xl px-4 py-3 text-[14px] focus:outline-none focus:border-coral transition-colors"
+                        value={suggestion.email}
+                        onChange={(e) => setSuggestion(prev => ({ ...prev, email: e.target.value }))}
+                      />
+                    </div>
+                    <button type="submit" className="w-full btn-primary py-4 text-[15px] flex items-center justify-center gap-2">
+                      <Send size={18} /> 제안 제출하기
+                    </button>
+                  </form>
+                </div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
