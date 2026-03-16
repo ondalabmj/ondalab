@@ -163,14 +163,14 @@ export default function App() {
                     AI로 만드는<br /><em className="italic text-coral not-italic">나만의 영상</em>
                   </h1>
                   <p className="text-lg text-navy/70 leading-relaxed mb-8 max-w-md">
-                    온다랩과 함께 AI 툴로 동영상을 제작하는 방법을 배워보세요. 동영상 강의, PPT 자료, 블로그 아티클부터 직접 제출한 과제의 피드백까지 한 곳에서 모두 가능합니다.
+                    온다랩과 함께 AI 툴로 동영상을 제작하는 방법을 배워보세요. 학습부터 과제 제출, 그리고 피드백까지 한 곳에서 모두 가능합니다.
                   </p>
                   <div className="flex flex-wrap gap-3 items-center">
                     <button onClick={() => handlePageChange('learn')} className="btn-primary flex items-center gap-2">
                       학습 시작하기 <ChevronRight size={18} />
                     </button>
                     <button onClick={() => handlePageChange('about')} className="btn-secondary">
-                      온다랩? 보기
+                      온다랩은
                     </button>
                   </div>
                 </div>
@@ -295,14 +295,19 @@ export default function App() {
               </div>
               <div className="bg-white rounded-[32px] border border-navy/10 shadow-xl p-8 md:p-12 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-12 items-start mb-8">
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-40 h-40 rounded-full bg-gradient-to-br from-navy to-navy-mid flex items-center justify-center bebas text-6xl text-white tracking-widest shadow-lg mb-4">
+                  {/* <div className="w-40 h-40 rounded-full bg-gradient-to-br from-navy to-navy-mid flex items-center justify-center bebas text-6xl text-white tracking-widest shadow-lg mb-4">
                     온
-                  </div>
+                  </div> */}
+                  <img 
+                    src="https://www.canva.com/design/DAHEGPl0ivI/Qt_HQbQ4R86rSbVWs6k7Qw/edit?utm_content=DAHEGPl0ivI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" 
+                    className="w-40 h-40 rounded-full bg-gradient-to-br from-navy to-navy-mid flex items-center justify-center bebas text-6xl text-white tracking-widest shadow-lg mb-4" 
+                    referrerPolicy="no-referrer" 
+                  />
                   <div className="text-lg font-bold text-navy">온다랩 대표</div>
-                  <div className="text-[13px] text-navy/40 mt-1">AI 영상 제작 교육자</div>
+                  <div className="text-[13px] text-navy/40 mt-1">AI 디지털 튜터</div>
                   <div className="flex justify-center gap-2 mt-4">
-                    <button className="text-[12px] font-semibold px-3 py-1 rounded-md border-1.5 border-navy/10 bg-bg text-navy/70 hover:border-navy hover:text-navy transition-all">유튜브</button>
-                    <button className="text-[12px] font-semibold px-3 py-1 rounded-md border-1.5 border-navy/10 bg-bg text-navy/70 hover:border-navy hover:text-navy transition-all">인스타</button>
+                    <button className="text-[12px] font-semibold px-3 py-1 rounded-md border-1.5 border-navy/10 bg-bg text-navy/70 hover:border-navy hover:text-navy transition-all" href="https://www.youtube.com/@ondalab">유튜브</button>
+                    <button className="text-[12px] font-semibold px-3 py-1 rounded-md border-1.5 border-navy/10 bg-bg text-navy/70 hover:border-navy hover:text-navy transition-all" href="https://www.tistory.com/ondablab>블로그</button>
                   </div>
                 </div>
                 <div>
@@ -312,10 +317,10 @@ export default function App() {
                   <div className="text-[15px] text-navy/70 leading-relaxed space-y-4">
                     <p>안녕하세요, 온다랩 대표입니다.</p>
                     <p>저는 영상 편집을 전혀 몰랐던 사람이 AI 툴을 통해 콘텐츠 크리에이터가 된 경험을 바탕으로, 누구나 AI를 활용해 자신만의 영상을 만들 수 있다는 것을 알리고 싶어 온다랩을 시작했습니다.</p>
-                    <p>복잡한 편집 기술 없이도 Runway, Sora, HeyGen 같은 AI 도구를 활용하면 놀라운 영상을 만들 수 있어요. 실습 중심의 강의와 직접 과제 피드백을 통해 빠르게 성장할 수 있도록 도와드리겠습니다.</p>
+                    <p>복잡한 편집 기술 없이도 Vrew, Canva, Suno 같은 AI 도구를 활용하면 놀라운 영상을 만들 수 있어요. 실습 중심의 강의와 직접 과제 피드백을 통해 빠르게 성장할 수 있도록 도와드리겠습니다.</p>
                   </div>
                   <div className="flex flex-wrap gap-2 mt-8">
-                    {['Runway Gen-3', 'OpenAI Sora', 'HeyGen', 'Pika', 'CapCut AI', 'ElevenLabs', 'Midjourney', 'Kling AI'].map(skill => (
+                    {['Vrew', 'Canva', 'Suno', 'Kinemaster', 'CapCut AI', 'ChatGPT', 'Gemini', 'Kling AI'].map(skill => (
                       <span key={skill} className="text-[12.5px] font-semibold px-3.5 py-1.5 rounded-full bg-navy-light text-navy border border-navy/10">
                         {skill}
                       </span>
@@ -349,7 +354,7 @@ export default function App() {
             >
               <div className="mb-10">
                 <div className="text-[11px] font-bold tracking-[0.15em] uppercase text-coral mb-2">학습하기</div>
-                <h2 className="text-3xl font-bold text-navy">AI 영상 제작, 지금 시작하세요</h2>
+                <h2 className="text-3xl font-bold text-navy">AI 어렵지 않습니다, 지금 시작하세요</h2>
               </div>
               <div className="flex flex-wrap gap-2 mb-8">
                 {[
