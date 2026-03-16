@@ -163,7 +163,7 @@ export default function App() {
                     AI로 만드는<br /><em className="italic text-coral not-italic">나만의 영상</em>
                   </h1>
                   <p className="text-lg text-navy/70 leading-relaxed mb-8 max-w-md">
-                    온다랩과 함께 AI 툴로 동영상을 제작하는 방법을 배워보세요. 학습부터 과제 제출, 그리고 피드백까지 한 곳에서 모두 가능합니다.
+                    학습부터 과제 제출, 그리고 피드백까지 한 곳에서 모두 가능합니다.
                   </p>
                   <div className="flex flex-wrap gap-3 items-center">
                     <button onClick={() => handlePageChange('learn')} className="btn-primary flex items-center gap-2">
@@ -290,24 +290,34 @@ export default function App() {
               className="container mx-auto px-6 md:px-10 py-14"
             >
               <div className="mb-10">
-                <div className="text-[11px] font-bold tracking-[0.15em] uppercase text-coral mb-2">온다랩?</div>
+                <div className="text-[11px] font-bold tracking-[0.15em] uppercase text-coral mb-2">온다랩은</div>
                 <h2 className="text-3xl font-bold text-navy">온다랩을 만드는 사람</h2>
               </div>
               <div className="bg-white rounded-[32px] border border-navy/10 shadow-xl p-8 md:p-12 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-12 items-start mb-8">
                 <div className="flex flex-col items-center text-center">
-                  {/* <div className="w-40 h-40 rounded-full bg-gradient-to-br from-navy to-navy-mid flex items-center justify-center bebas text-6xl text-white tracking-widest shadow-lg mb-4">
-                    온
-                  </div> */}
-                  <img 
-                    src="https://www.canva.com/design/DAHEGPl0ivI/Qt_HQbQ4R86rSbVWs6k7Qw/edit?utm_content=DAHEGPl0ivI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" 
-                    className="w-40 h-40 rounded-full bg-gradient-to-br from-navy to-navy-mid flex items-center justify-center bebas text-6xl text-white tracking-widest shadow-lg mb-4" 
-                    referrerPolicy="no-referrer" 
-                  />
+                  <div className="w-40 h-40 rounded-full bg-bg border border-navy/10 flex items-center justify-center overflow-hidden shadow-lg mb-4">
+                    <img 
+                      src="https://storage.googleapis.com/static.miraibot.ai/applet_media/67d6775be6027100135d5763/67d6775be6027100135d5763_0.png" 
+                      alt="Profile" 
+                      className="w-full h-full object-contain p-4"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
                   <div className="text-lg font-bold text-navy">온다랩 대표</div>
                   <div className="text-[13px] text-navy/40 mt-1">AI 디지털 튜터</div>
                   <div className="flex justify-center gap-2 mt-4">
-                    <button className="text-[12px] font-semibold px-3 py-1 rounded-md border-1.5 border-navy/10 bg-bg text-navy/70 hover:border-navy hover:text-navy transition-all" href="https://www.youtube.com/@ondalab">유튜브</button>
-                    <button className="text-[12px] font-semibold px-3 py-1 rounded-md border-1.5 border-navy/10 bg-bg text-navy/70 hover:border-navy hover:text-navy transition-all" href="https://www.tistory.com/ondablab>블로그</button>
+                    <button 
+                      onClick={() => window.open('https://www.youtube.com/@onda-lab', '_blank')}
+                      className="text-[12px] font-semibold px-3 py-1 rounded-md border-1.5 border-navy/10 bg-bg text-navy/70 hover:border-navy hover:text-navy transition-all"
+                    >
+                      유튜브
+                    </button>
+                    <button 
+                      onClick={() => window.open('https://ondalab.tistory.com/', '_blank')}
+                      className="text-[12px] font-semibold px-3 py-1 rounded-md border-1.5 border-navy/10 bg-bg text-navy/70 hover:border-navy hover:text-navy transition-all"
+                    >
+                      블로그
+                    </button>
                   </div>
                 </div>
                 <div>
@@ -320,7 +330,7 @@ export default function App() {
                     <p>복잡한 편집 기술 없이도 Vrew, Canva, Suno 같은 AI 도구를 활용하면 놀라운 영상을 만들 수 있어요. 실습 중심의 강의와 직접 과제 피드백을 통해 빠르게 성장할 수 있도록 도와드리겠습니다.</p>
                   </div>
                   <div className="flex flex-wrap gap-2 mt-8">
-                    {['Vrew', 'Canva', 'Suno', 'Kinemaster', 'CapCut AI', 'ChatGPT', 'Gemini', 'Kling AI'].map(skill => (
+                    {['Vrew', 'Canva', 'Suno', 'Kinemaster', 'CapCut AI', 'ChatGPT', 'Gemini'].map(skill => (
                       <span key={skill} className="text-[12.5px] font-semibold px-3.5 py-1.5 rounded-full bg-navy-light text-navy border border-navy/10">
                         {skill}
                       </span>
@@ -717,7 +727,7 @@ export default function App() {
                 referrerPolicy="no-referrer" 
               />
             </div>
-            <p className="text-[13px] text-navy/40 leading-relaxed mb-2">AI 디지털 리터러시 교육 플랫폼 · 누구나 쉽게, 내 손으로 AI 영상을</p>
+            <p className="text-[13px] text-navy/40 leading-relaxed mb-2">AI 디지털 리터러시 교육 플랫폼 · 작은 화면 너머, 더 큰 세상으로</p>
             <div className="text-[11.5px] text-navy/40">© 2025 ondalab. All rights reserved.</div>
           </div>
           <div className="flex gap-6">

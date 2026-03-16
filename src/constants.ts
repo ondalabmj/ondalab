@@ -2,7 +2,7 @@ import { NavLink, StatItem, MenuCard, LearnContent, Project, PostIt } from './ty
 
 export const NAV_LINKS: NavLink[] = [
   { id: 'home', label: '홈' },
-  { id: 'about', label: '온다랩?' },
+  { id: 'about', label: '온다랩은' },
   { id: 'learn', label: '학습하기' },
   { id: 'project', label: '과제 관리' },
   { id: 'board', label: '자유 게시판' },
@@ -44,7 +44,7 @@ export const MENU_CARDS: MenuCard[] = [
   {
     id: 'about',
     icon: '👤',
-    title: '온다랩?',
+    title: '온다랩은',
     desc: '강의 철학과 이력, 사용하는 AI 툴을 소개합니다',
     tags: ['프로필', '강의철학'],
     color: 'purple',
