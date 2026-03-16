@@ -42,14 +42,6 @@ export const MENU_CARDS: MenuCard[] = [
     color: 'teal',
   },
   {
-    id: 'suggest',
-    icon: '🏫',
-    title: '강의 요청',
-    desc: '온다랩의 교육 서비스가 필요한 곳이라면 어디든 신청해주세요',
-    tags: ['기관요청', '특강문의'],
-    color: 'amber',
-  },
-  {
     id: 'about',
     icon: '👤',
     title: '온다랩?',
