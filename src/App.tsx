@@ -113,7 +113,7 @@ export default function App() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-bg/92 backdrop-blur-xl border-b border-navy/10 h-[60px] flex items-center px-6 md:px-10">
         <button onClick={() => handlePageChange('home')} className="mr-10 flex-shrink-0">
           <img 
-            src="https://storage.googleapis.com/static.miraibot.ai/applet_media/67d6775be6027100135d5763/67d6775be6027100135d5763_0.png" 
+            src="https://drive.google.com/thumbnail?id=1qalAieoQ3_-7NWHKc7neDptz-SaGrf_A&sz=w1000" 
             alt="ONDALAB" 
             className="h-12 w-auto object-contain" 
             referrerPolicy="no-referrer" 
@@ -297,9 +297,9 @@ export default function App() {
                 <div className="flex flex-col items-center text-center">
                   <div className="w-40 h-40 rounded-full bg-bg border border-navy/10 flex items-center justify-center overflow-hidden shadow-lg mb-4">
                     <img 
-                      src="https://storage.googleapis.com/static.miraibot.ai/applet_media/67d6775be6027100135d5763/67d6775be6027100135d5763_0.png" 
+                      src="https://drive.google.com/thumbnail?id=1kNjcsGpQ2vT-epBRx0xtNzCXa681t_3l&sz=w1000" 
                       alt="Profile" 
-                      className="w-full h-full object-contain p-4"
+                      className="w-full h-full object-cover"
                       referrerPolicy="no-referrer"
                     />
                   </div>
@@ -721,7 +721,7 @@ export default function App() {
           <div>
             <div className="mb-2">
               <img 
-                src="https://storage.googleapis.com/static.miraibot.ai/applet_media/67d6775be6027100135d5763/67d6775be6027100135d5763_0.png" 
+                src="https://drive.google.com/thumbnail?id=1qalAieoQ3_-7NWHKc7neDptz-SaGrf_A&sz=w1000" 
                 alt="ONDALAB" 
                 className="h-12 w-auto object-contain" 
                 referrerPolicy="no-referrer" 
@@ -731,7 +731,7 @@ export default function App() {
             <div className="text-[11.5px] text-navy/40">© 2025 ondalab. All rights reserved.</div>
           </div>
           <div className="flex gap-6">
-            {NAV_LINKS.slice(1).map(link => (
+            {NAV_LINKS.slice(2).map(link => (
               <button key={link.id} onClick={() => handlePageChange(link.id)} className="text-[13px] text-navy/40 hover:text-coral transition-colors">
                 {link.label}
               </button>
