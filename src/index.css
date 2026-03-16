@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans KR", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "DM Serif Display", serif;
+  --font-bebas: "Bebas Neue", sans-serif;
+
+  --color-navy: #0f2540;
+  --color-navy-mid: #1a3a5c;
+  --color-navy-light: #e8f1f9;
+  --color-coral: #E87547;
+  --color-coral-light: #fdf0ea;
+  --color-coral-mid: #f0c4a8;
+  --color-teal: #1D9E75;
+  --color-teal-light: #e1f5ee;
+  --color-teal-mid: #9FE1CB;
+  --color-amber: #d4890a;
+  --color-amber-light: #fff5e0;
+  --color-amber-mid: #f5d08a;
+  --color-purple: #6B48C8;
+  --color-purple-light: #f0ecff;
+  --color-purple-mid: #c9b5f5;
+  --color-bg: #f7f5f0;
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-navy font-sans antialiased;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-navy text-white font-bold rounded-lg transition-all hover:-translate-y-1 hover:shadow-lg active:translate-y-0;
+  }
+  .btn-secondary {
+    @apply px-6 py-3 border-2 border-navy/20 text-navy/70 font-medium rounded-lg transition-all hover:border-navy hover:text-navy;
+  }
+  .btn-coral {
+    @apply px-6 py-2 bg-coral text-white font-bold rounded-lg transition-all hover:bg-[#d4612f] hover:-translate-y-0.5;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.animate-blink {
+  animation: blink 2s infinite;
+}
+
+.dm-serif {
+  font-family: "DM Serif Display", serif;
+}
+
+.bebas {
+  font-family: "Bebas Neue", sans-serif;
+}
